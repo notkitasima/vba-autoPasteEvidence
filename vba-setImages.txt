@@ -1,0 +1,133 @@
+Option Explicit
+
+'================================================================
+'Copyright <2019> <notkitasima@gmail.com>
+
+'Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+'The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+'================================================================
+'【エビデンス画像ファイル貼り付けツール】
+'
+'【仕様】
+'　C列に張り付けられます（調整可能）※ループ分画像の位置をスライド
+'　エビデンス画像ファイルには見やすさのため枠線（黒）が付与されます（調整可能）※すべてのシェイプに枠線を追加する
+'【使い方】
+'　①エビデンス画像ファイルを張り付けたいシートを選択
+'　②エビデンス画像ファイルを張り付けたい行を選択
+'　③マクロを実行
+'　④エビデンス画像ファイルを1つ以上選択
+'
+'===============================================================
+'作業時はSub名をaa0001に変更すると楽
+'aa0001_getPicSizeXY
+'ax0001_getPicSizeXY
+Sub aa0001_getPicSizeXY()
+    '変数宣言
+    Dim pic As Object
+    Dim sp As Shape
+    Dim oWidth As Long
+    Dim oHeight As Long
+    Dim pWidth As Long
+    Dim pHeight As Long
+    Dim arrFile As Variant
+    Dim arrFileItem As Variant
+    Dim strFile As String
+    Dim activeCellRow As Integer
+    Dim activeCellCol As Integer
+    Dim oneColumunLenge As Double
+    Dim oneColumunLengeMultiplier As Integer
+    
+    activeCellRow = ActiveCell.Row
+    activeCellCol = ActiveCell.Column
+    
+    oneColumunLenge = 53.9
+    '1=>A列 2=>B列 3=>C列...
+    oneColumunLengeMultiplier = 3
+    
+    'ダイアログ待機（複数選択可）
+    arrFile = Application.GetOpenFilename(FileFilter:="全てのファイル,*.*", _
+                                            Title:="画像ファイルを選択してください", _
+                                            MultiSelect:=True) '複数選択オプション
+    
+    'キャンセル処理
+    If Not IsArray(arrFile) Then Exit Sub
+    
+    'エビデンス画像ファイル初期配置
+    Dim imageLeftValue As Integer
+    imageLeftValue = oneColumunLenge * oneColumunLengeMultiplier
+    
+    '画像処理 複数選択
+    For Each arrFileItem In arrFile
+        
+        strFile = arrFileItem
+        Select Case Mid(strFile, InStrRev(strFile, "."))
+        
+            Case ".bmp", ".ico", ".rle", ".wmf", ".emf", ".gif", ".jpg" ', ".JPG"
+                Set pic = LoadPicture(strFile)
+                pWidth = CLng(CDbl(pic.Width) * 24 / 635)
+                pHeight = CLng(CDbl(pic.Height) * 24 / 635)
+                
+                'jpg貼り付け
+                With ActiveSheet.Pictures.Insert(strFile)
+                    .Top = Range("B3").Top
+                    .Left = Range("B3").Left
+                    ActiveSheet.Shapes(.Name).LockAspectRatio = msoFalse
+                End With
+                
+            'png系とjpg系
+            Case ".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG" '※"JPG"だと反応する+問題なさそう
+                Set sp = ActiveSheet.Shapes.AddPicture( _
+                            Filename:=strFile, _
+                            LinkToFile:=False, _
+                            SaveWithDocument:=True, _
+                            Left:=imageLeftValue, _
+                            Top:=ActiveCell.Top, _
+                            Width:=0, _
+                            Height:=0 _
+                            )
+                
+                With sp
+                    .LockAspectRatio = msoTrue
+                    .ScaleHeight 1, msoTrue
+                    .ScaleWidth 1, msoTrue
+                    oWidth = CLng(.Width)
+                    oHeight = CLng(.Height)
+                    pWidth = CLng(.Width * 4 / 3)
+                    pHeight = CLng(.Height * 4 / 3)
+                    '.Delete
+                End With
+                
+                'ループ分画像の位置をスライド
+                imageLeftValue = imageLeftValue + oWidth + oneColumunLenge
+                
+                Debug.Print "============================="
+                Debug.Print "imageLeftValue:" & imageLeftValue
+                Debug.Print "oWidth:" & oWidth
+                
+            Case Else 'その他の拡張子処理終了
+                Exit Sub
+                
+        End Select
+        'Debug.Print "横：" & pWidth & vbLf & "縦：" & pheight
+        
+    Next arrFileItem
+    
+    'すべてのシェイプに枠線を追加する
+    Dim i As Integer
+    For i = 1 To ActiveSheet.Shapes.Count
+        With ActiveSheet.Shapes(i).Select
+            With Selection.ShapeRange.Line
+                .Visible = msoTrue
+                .ForeColor.RGB = RGB(0, 0, 0)
+                .Transparency = 0
+            End With
+        End With
+    Next i
+    
+    '元のセルへ移動する
+    Cells(activeCellRow, activeCellCol).Select
+    
+End Sub
