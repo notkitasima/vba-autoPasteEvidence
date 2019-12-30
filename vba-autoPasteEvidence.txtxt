@@ -9,23 +9,23 @@ Option Explicit
 
 'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '================================================================
-'yƒGƒrƒfƒ“ƒX‰æ‘œƒtƒ@ƒCƒ‹“\‚è•t‚¯ƒc[ƒ‹z
+'ã€ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«è²¼ã‚Šä»˜ã‘ãƒ„ãƒ¼ãƒ«ã€‘
 '
-'yd—lz
-'@C—ñ‚É’£‚è•t‚¯‚ç‚ê‚Ü‚·i’²®‰Â”\j¦ƒ‹[ƒv•ª‰æ‘œ‚ÌˆÊ’u‚ğƒXƒ‰ƒCƒh
-'@ƒGƒrƒfƒ“ƒX‰æ‘œƒtƒ@ƒCƒ‹‚É‚ÍŒ©‚â‚·‚³‚Ì‚½‚ß˜güi•j‚ª•t—^‚³‚ê‚Ü‚·i’²®‰Â”\j¦‚·‚×‚Ä‚ÌƒVƒFƒCƒv‚É˜gü‚ğ’Ç‰Á‚·‚é
-'yg‚¢•ûz
-'@‡@ƒGƒrƒfƒ“ƒX‰æ‘œƒtƒ@ƒCƒ‹‚ğ’£‚è•t‚¯‚½‚¢ƒV[ƒg‚ğ‘I‘ğ
-'@‡AƒGƒrƒfƒ“ƒX‰æ‘œƒtƒ@ƒCƒ‹‚ğ’£‚è•t‚¯‚½‚¢s‚ğ‘I‘ğ
-'@‡Bƒ}ƒNƒ‚ğÀs
-'@‡CƒGƒrƒfƒ“ƒX‰æ‘œƒtƒ@ƒCƒ‹‚ğ1‚ÂˆÈã‘I‘ğ
+'ã€ä»•æ§˜ã€‘
+'ã€€Cåˆ—ã«å¼µã‚Šä»˜ã‘ã‚‰ã‚Œã¾ã™ï¼ˆèª¿æ•´å¯èƒ½ï¼‰â€»ãƒ«ãƒ¼ãƒ—åˆ†ç”»åƒã®ä½ç½®ã‚’ã‚¹ãƒ©ã‚¤ãƒ‰
+'ã€€ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã«ã¯è¦‹ã‚„ã™ã•ã®ãŸã‚æ ç·šï¼ˆé»’ï¼‰ãŒä»˜ä¸ã•ã‚Œã¾ã™ï¼ˆèª¿æ•´å¯èƒ½ï¼‰â€»ã™ã¹ã¦ã®ã‚·ã‚§ã‚¤ãƒ—ã«æ ç·šã‚’è¿½åŠ ã™ã‚‹
+'ã€ä½¿ã„æ–¹ã€‘
+'ã€€â‘ ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¼µã‚Šä»˜ã‘ãŸã„ã‚·ãƒ¼ãƒˆã‚’é¸æŠ
+'ã€€â‘¡ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¼µã‚Šä»˜ã‘ãŸã„è¡Œã‚’é¸æŠ
+'ã€€â‘¢ãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œ
+'ã€€â‘£ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’1ã¤ä»¥ä¸Šé¸æŠ
 '
 '===============================================================
-'ì‹Æ‚ÍSub–¼‚ğaa0001‚É•ÏX‚·‚é‚ÆŠy
+'ä½œæ¥­æ™‚ã¯Subåã‚’aa0001ã«å¤‰æ›´ã™ã‚‹ã¨æ¥½
 'aa0001_getPicSizeXY
 'ax0001_getPicSizeXY
-Sub aa0001_getPicSizeXY()
-    '•Ï”éŒ¾
+Sub aa0001_vba-autoPasteEvidence()
+    'å¤‰æ•°å®£è¨€
     Dim pic As Object
     Dim sp As Shape
     Dim oWidth As Long
@@ -44,22 +44,22 @@ Sub aa0001_getPicSizeXY()
     activeCellCol = ActiveCell.Column
     
     oneColumunLenge = 53.9
-    '1=>A—ñ 2=>B—ñ 3=>C—ñ...
+    '1=>Aåˆ— 2=>Båˆ— 3=>Cåˆ—...
     oneColumunLengeMultiplier = 3
     
-    'ƒ_ƒCƒAƒƒO‘Ò‹@i•¡”‘I‘ğ‰Âj
-    arrFile = Application.GetOpenFilename(FileFilter:="‘S‚Ä‚Ìƒtƒ@ƒCƒ‹,*.*", _
-                                            Title:="‰æ‘œƒtƒ@ƒCƒ‹‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢", _
-                                            MultiSelect:=True) '•¡”‘I‘ğƒIƒvƒVƒ‡ƒ“
+    'ãƒ€ã‚¤ã‚¢ãƒ­ã‚°å¾…æ©Ÿï¼ˆè¤‡æ•°é¸æŠå¯ï¼‰
+    arrFile = Application.GetOpenFilename(FileFilter:="å…¨ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«,*.*", _
+                                            Title:="ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã—ã¦ãã ã•ã„", _
+                                            MultiSelect:=True) 'è¤‡æ•°é¸æŠã‚ªãƒ—ã‚·ãƒ§ãƒ³
     
-    'ƒLƒƒƒ“ƒZƒ‹ˆ—
+    'ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     If Not IsArray(arrFile) Then Exit Sub
     
-    'ƒGƒrƒfƒ“ƒX‰æ‘œƒtƒ@ƒCƒ‹‰Šú”z’u
+    'ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸé…ç½®
     Dim imageLeftValue As Integer
     imageLeftValue = oneColumunLenge * oneColumunLengeMultiplier
     
-    '‰æ‘œˆ— •¡”‘I‘ğ
+    'ç”»åƒå‡¦ç† è¤‡æ•°é¸æŠ
     For Each arrFileItem In arrFile
         
         strFile = arrFileItem
@@ -70,15 +70,15 @@ Sub aa0001_getPicSizeXY()
                 pWidth = CLng(CDbl(pic.Width) * 24 / 635)
                 pHeight = CLng(CDbl(pic.Height) * 24 / 635)
                 
-                'jpg“\‚è•t‚¯
+                'jpgè²¼ã‚Šä»˜ã‘
                 With ActiveSheet.Pictures.Insert(strFile)
                     .Top = Range("B3").Top
                     .Left = Range("B3").Left
                     ActiveSheet.Shapes(.Name).LockAspectRatio = msoFalse
                 End With
                 
-            'pngŒn‚ÆjpgŒn
-            Case ".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG" '¦"JPG"‚¾‚Æ”½‰‚·‚é+–â‘è‚È‚³‚»‚¤
+            'pngç³»ã¨jpgç³»
+            Case ".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG" 'â€»"JPG"ã ã¨åå¿œã™ã‚‹+å•é¡Œãªã•ãã†
                 Set sp = ActiveSheet.Shapes.AddPicture( _
                             Filename:=strFile, _
                             LinkToFile:=False, _
@@ -100,22 +100,22 @@ Sub aa0001_getPicSizeXY()
                     '.Delete
                 End With
                 
-                'ƒ‹[ƒv•ª‰æ‘œ‚ÌˆÊ’u‚ğƒXƒ‰ƒCƒh
+                'ãƒ«ãƒ¼ãƒ—åˆ†ç”»åƒã®ä½ç½®ã‚’ã‚¹ãƒ©ã‚¤ãƒ‰
                 imageLeftValue = imageLeftValue + oWidth + oneColumunLenge
                 
                 Debug.Print "============================="
                 Debug.Print "imageLeftValue:" & imageLeftValue
                 Debug.Print "oWidth:" & oWidth
                 
-            Case Else '‚»‚Ì‘¼‚ÌŠg’£qˆ—I—¹
+            Case Else 'ãã®ä»–ã®æ‹¡å¼µå­å‡¦ç†çµ‚äº†
                 Exit Sub
                 
         End Select
-        'Debug.Print "‰¡F" & pWidth & vbLf & "cF" & pheight
+        'Debug.Print "æ¨ªï¼š" & pWidth & vbLf & "ç¸¦ï¼š" & pheight
         
     Next arrFileItem
     
-    '‚·‚×‚Ä‚ÌƒVƒFƒCƒv‚É˜gü‚ğ’Ç‰Á‚·‚é
+    'ã™ã¹ã¦ã®ã‚·ã‚§ã‚¤ãƒ—ã«æ ç·šã‚’è¿½åŠ ã™ã‚‹
     Dim i As Integer
     For i = 1 To ActiveSheet.Shapes.Count
         With ActiveSheet.Shapes(i).Select
@@ -127,7 +127,7 @@ Sub aa0001_getPicSizeXY()
         End With
     Next i
     
-    'Œ³‚ÌƒZƒ‹‚ÖˆÚ“®‚·‚é
+    'å…ƒã®ã‚»ãƒ«ã¸ç§»å‹•ã™ã‚‹
     Cells(activeCellRow, activeCellCol).Select
     
 End Sub
